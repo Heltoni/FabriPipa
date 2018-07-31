@@ -1,0 +1,346 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ModelPipas.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TBClientes">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdTipoDoc" Type="int" Nullable="false" />
+          <Property Name="NumDoc" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="NmCliente" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telefone" Type="varchar" MaxLength="20" />
+          <Property Name="Endereco" Type="varchar" MaxLength="50" />
+          <Property Name="DtInclusao" Type="datetime" Nullable="false" />
+          <Property Name="DtAlteracao" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBFornecedores">
+          <Key>
+            <PropertyRef Name="IdFornecedor" />
+          </Key>
+          <Property Name="IdFornecedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RazaoSocial" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NmFantasia" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cnpj" Type="varchar" MaxLength="14" Nullable="false" />
+          <Property Name="Endereco" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Telefone" Type="varchar" MaxLength="20" />
+          <Property Name="Celular" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="varchar" MaxLength="30" />
+          <Property Name="Observacao" Type="varchar" MaxLength="300" />
+          <Property Name="DtInclusao" Type="datetime" Nullable="false" />
+          <Property Name="DtAlteracao" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TBItens">
+          <Key>
+            <PropertyRef Name="IdItem" />
+          </Key>
+          <Property Name="IdItem" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdPedido" Type="int" Nullable="false" />
+          <Property Name="IdProduto" Type="int" Nullable="false" />
+          <Property Name="Quantidade" Type="int" Nullable="false" />
+          <Property Name="DtInclusao" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBPedidos">
+          <Key>
+            <PropertyRef Name="IdPedido" />
+          </Key>
+          <Property Name="IdPedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCliente" Type="int" Nullable="false" />
+          <Property Name="DtPedido" Type="date" Nullable="false" />
+          <Property Name="NumPedido" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DtInclusao" Type="datetime" Nullable="false" />
+          <Property Name="DtAlteracao" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TBProdutos">
+          <Key>
+            <PropertyRef Name="IdProduto" />
+          </Key>
+          <Property Name="IdProduto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descricao" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UnidadeMedida" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Quantidade" Type="int" Nullable="false" />
+          <Property Name="VlUnitario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Validade" Type="nchar" MaxLength="10" />
+          <Property Name="IdFornecedor" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Observacao" Type="varchar" MaxLength="300" />
+          <Property Name="DtInclusao" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBTipoDocumento">
+          <Key>
+            <PropertyRef Name="IdDoc" />
+          </Key>
+          <Property Name="IdDoc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descricao" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBTipoUsuario">
+          <Key>
+            <PropertyRef Name="IdTipoUsuario" />
+          </Key>
+          <Property Name="IdTipoUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DescrTipoUsuario" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBUsuarios">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdTipoUsuario" Type="int" Nullable="false" />
+          <Property Name="IdUsuarioAlteracao" Type="int" Nullable="false" />
+          <Property Name="NmUsuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NmLogin" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Senha" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BtAtivo" Type="bit" Nullable="false" />
+          <Property Name="DtInclusao" Type="datetime" Nullable="false" />
+          <Property Name="DtAlteracao" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ModelPipasStoreContainer">
+          <EntitySet Name="TBClientes" EntityType="Self.TBClientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBFornecedores" EntityType="Self.TBFornecedores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBItens" EntityType="Self.TBItens" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBPedidos" EntityType="Self.TBPedidos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBProdutos" EntityType="Self.TBProdutos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBTipoDocumento" EntityType="Self.TBTipoDocumento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBTipoUsuario" EntityType="Self.TBTipoUsuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBUsuarios" EntityType="Self.TBUsuarios" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ModelPipas" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TBClientes">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdTipoDoc" Type="Int32" Nullable="false" />
+          <Property Name="NumDoc" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NmCliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Endereco" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DtInclusao" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DtAlteracao" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="TBFornecedores">
+          <Key>
+            <PropertyRef Name="IdFornecedor" />
+          </Key>
+          <Property Name="IdFornecedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RazaoSocial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NmFantasia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cnpj" Type="String" MaxLength="14" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Endereco" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Celular" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Observacao" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="DtInclusao" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DtAlteracao" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="TBItens">
+          <Key>
+            <PropertyRef Name="IdItem" />
+          </Key>
+          <Property Name="IdItem" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdPedido" Type="Int32" Nullable="false" />
+          <Property Name="IdProduto" Type="Int32" Nullable="false" />
+          <Property Name="Quantidade" Type="Int32" Nullable="false" />
+          <Property Name="DtInclusao" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="TBPedidos">
+          <Key>
+            <PropertyRef Name="IdPedido" />
+          </Key>
+          <Property Name="IdPedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCliente" Type="Int32" Nullable="false" />
+          <Property Name="DtPedido" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="NumPedido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DtInclusao" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DtAlteracao" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="TBProdutos">
+          <Key>
+            <PropertyRef Name="IdProduto" />
+          </Key>
+          <Property Name="IdProduto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UnidadeMedida" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Quantidade" Type="Int32" Nullable="false" />
+          <Property Name="VlUnitario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Validade" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="IdFornecedor" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Observacao" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="DtInclusao" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="TBTipoDocumento">
+          <Key>
+            <PropertyRef Name="IdDoc" />
+          </Key>
+          <Property Name="IdDoc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBTipoUsuario">
+          <Key>
+            <PropertyRef Name="IdTipoUsuario" />
+          </Key>
+          <Property Name="IdTipoUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescrTipoUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBUsuarios">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdTipoUsuario" Type="Int32" Nullable="false" />
+          <Property Name="IdUsuarioAlteracao" Type="Int32" Nullable="false" />
+          <Property Name="NmUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NmLogin" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Senha" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BtAtivo" Type="Boolean" Nullable="false" />
+          <Property Name="DtInclusao" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DtAlteracao" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="PipasEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TBClientes" EntityType="Self.TBClientes" />
+          <EntitySet Name="TBFornecedores" EntityType="Self.TBFornecedores" />
+          <EntitySet Name="TBItens" EntityType="Self.TBItens" />
+          <EntitySet Name="TBPedidos" EntityType="Self.TBPedidos" />
+          <EntitySet Name="TBProdutos" EntityType="Self.TBProdutos" />
+          <EntitySet Name="TBTipoDocumento" EntityType="Self.TBTipoDocumento" />
+          <EntitySet Name="TBTipoUsuario" EntityType="Self.TBTipoUsuario" />
+          <EntitySet Name="TBUsuarios" EntityType="Self.TBUsuarios" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelPipasStoreContainer" CdmEntityContainer="PipasEntities">
+          <EntitySetMapping Name="TBClientes">
+            <EntityTypeMapping TypeName="ModelPipas.TBClientes">
+              <MappingFragment StoreEntitySet="TBClientes">
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="IdTipoDoc" ColumnName="IdTipoDoc" />
+                <ScalarProperty Name="NumDoc" ColumnName="NumDoc" />
+                <ScalarProperty Name="NmCliente" ColumnName="NmCliente" />
+                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+                <ScalarProperty Name="Endereco" ColumnName="Endereco" />
+                <ScalarProperty Name="DtInclusao" ColumnName="DtInclusao" />
+                <ScalarProperty Name="DtAlteracao" ColumnName="DtAlteracao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBFornecedores">
+            <EntityTypeMapping TypeName="ModelPipas.TBFornecedores">
+              <MappingFragment StoreEntitySet="TBFornecedores">
+                <ScalarProperty Name="IdFornecedor" ColumnName="IdFornecedor" />
+                <ScalarProperty Name="RazaoSocial" ColumnName="RazaoSocial" />
+                <ScalarProperty Name="NmFantasia" ColumnName="NmFantasia" />
+                <ScalarProperty Name="Cnpj" ColumnName="Cnpj" />
+                <ScalarProperty Name="Endereco" ColumnName="Endereco" />
+                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+                <ScalarProperty Name="Celular" ColumnName="Celular" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Observacao" ColumnName="Observacao" />
+                <ScalarProperty Name="DtInclusao" ColumnName="DtInclusao" />
+                <ScalarProperty Name="DtAlteracao" ColumnName="DtAlteracao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBItens">
+            <EntityTypeMapping TypeName="ModelPipas.TBItens">
+              <MappingFragment StoreEntitySet="TBItens">
+                <ScalarProperty Name="IdItem" ColumnName="IdItem" />
+                <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+                <ScalarProperty Name="IdProduto" ColumnName="IdProduto" />
+                <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
+                <ScalarProperty Name="DtInclusao" ColumnName="DtInclusao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBPedidos">
+            <EntityTypeMapping TypeName="ModelPipas.TBPedidos">
+              <MappingFragment StoreEntitySet="TBPedidos">
+                <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="DtPedido" ColumnName="DtPedido" />
+                <ScalarProperty Name="NumPedido" ColumnName="NumPedido" />
+                <ScalarProperty Name="DtInclusao" ColumnName="DtInclusao" />
+                <ScalarProperty Name="DtAlteracao" ColumnName="DtAlteracao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBProdutos">
+            <EntityTypeMapping TypeName="ModelPipas.TBProdutos">
+              <MappingFragment StoreEntitySet="TBProdutos">
+                <ScalarProperty Name="IdProduto" ColumnName="IdProduto" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="UnidadeMedida" ColumnName="UnidadeMedida" />
+                <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
+                <ScalarProperty Name="VlUnitario" ColumnName="VlUnitario" />
+                <ScalarProperty Name="Validade" ColumnName="Validade" />
+                <ScalarProperty Name="IdFornecedor" ColumnName="IdFornecedor" />
+                <ScalarProperty Name="Observacao" ColumnName="Observacao" />
+                <ScalarProperty Name="DtInclusao" ColumnName="DtInclusao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBTipoDocumento">
+            <EntityTypeMapping TypeName="ModelPipas.TBTipoDocumento">
+              <MappingFragment StoreEntitySet="TBTipoDocumento">
+                <ScalarProperty Name="IdDoc" ColumnName="IdDoc" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBTipoUsuario">
+            <EntityTypeMapping TypeName="ModelPipas.TBTipoUsuario">
+              <MappingFragment StoreEntitySet="TBTipoUsuario">
+                <ScalarProperty Name="IdTipoUsuario" ColumnName="IdTipoUsuario" />
+                <ScalarProperty Name="DescrTipoUsuario" ColumnName="DescrTipoUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBUsuarios">
+            <EntityTypeMapping TypeName="ModelPipas.TBUsuarios">
+              <MappingFragment StoreEntitySet="TBUsuarios">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdTipoUsuario" ColumnName="IdTipoUsuario" />
+                <ScalarProperty Name="IdUsuarioAlteracao" ColumnName="IdUsuarioAlteracao" />
+                <ScalarProperty Name="NmUsuario" ColumnName="NmUsuario" />
+                <ScalarProperty Name="NmLogin" ColumnName="NmLogin" />
+                <ScalarProperty Name="Senha" ColumnName="Senha" />
+                <ScalarProperty Name="BtAtivo" ColumnName="BtAtivo" />
+                <ScalarProperty Name="DtInclusao" ColumnName="DtInclusao" />
+                <ScalarProperty Name="DtAlteracao" ColumnName="DtAlteracao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
